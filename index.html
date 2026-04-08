@@ -11,11 +11,10 @@
         body, html { margin: 0; padding: 0; background-color: var(--preto); color: var(--branco); font-family: 'Segoe UI', sans-serif; overflow-x: hidden; }
         .tela { display: none; padding: 20px; min-height: 100vh; flex-direction: column; align-items: center; width: 100%; box-sizing: border-box; background-size: cover; background-position: center; background-attachment: fixed; }
         
-        /* Tela Inicial com Botão Oval */
         #tela-inicial { display: flex; justify-content: center; align-items: center; }
         .logo-btn { 
             width: 90vw; max-width: 450px; height: auto; aspect-ratio: 1.5/1; 
-            border-radius: 100px; /* Formato Oval */
+            border-radius: 100px; 
             border: 8px solid var(--branco); cursor: pointer; transition: 0.4s; 
             object-fit: cover; box-shadow: 0 0 30px rgba(255,255,255,0.3); 
         }
@@ -85,8 +84,7 @@
                         <option value="P">P</option><option value="M">M</option><option value="G">G</option><option value="GG">GG</option><option value="XG">XG</option>
                     </select>
                 </div>
-                <div class="campo"><label>Nº Sócio Gaviões *</label><input type="number" id="numSocio" required></div>
-                <div class="campo"><label>Foto Carteirinha/Recibo *</label><input type="file" id="fotoSocio" accept="image/*" required></div>
+                
                 <div class="campo"><label>Foto de Perfil *</label><input type="file" id="fotoPerfil" accept="image/*" required></div>
 
                 <button type="submit" class="btn-acao" id="btnReservar">Reservar Vaga</button>
@@ -210,10 +208,8 @@
             instrumento: $("#instrumento").val(),
             nivel: $("#nivel").val(),
             camiseta: $("#camiseta").val(),
-            numSocio: $("#numSocio").val(),
             nomeResp: $("#nomeResp").val() || "N/A",
             telResp: $("#telResp").val() || "N/A",
-            fotoSocio: await toBase64(document.getElementById("fotoSocio").files[0]),
             fotoPerfil: await toBase64(document.getElementById("fotoPerfil").files[0])
         };
 
