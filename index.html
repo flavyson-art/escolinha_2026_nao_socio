@@ -10,31 +10,19 @@
         :root { --preto: #000; --branco: #fff; --cinza: #aaa; --destaque: #ffd700; --erro: #ff4444; --sucesso: #00bfff; }
         body, html { margin: 0; padding: 0; background-color: var(--preto); color: var(--branco); font-family: 'Segoe UI', sans-serif; overflow-x: hidden; }
         .tela { display: none; padding: 20px; min-height: 100vh; flex-direction: column; align-items: center; width: 100%; box-sizing: border-box; background-size: cover; background-position: center; background-attachment: fixed; }
-        
         #tela-inicial { display: flex; justify-content: center; align-items: center; }
-        .logo-btn { 
-            width: 90vw; max-width: 450px; height: auto; aspect-ratio: 1.5/1; 
-            border-radius: 100px; 
-            border: 8px solid var(--branco); cursor: pointer; transition: 0.4s; 
-            object-fit: cover; box-shadow: 0 0 30px rgba(255,255,255,0.3); 
-        }
+        .logo-btn { width: 90vw; max-width: 450px; border-radius: 100px; border: 8px solid var(--branco); cursor: pointer; transition: 0.4s; box-shadow: 0 0 30px rgba(255,255,255,0.3); }
         .logo-btn:hover { transform: scale(1.02); box-shadow: 0 0 50px var(--destaque); }
-
         #tela-cadastro { background-image: url('https://raw.githubusercontent.com/flavyson-art/escolinha_ritimao/main/Fundo_tela_Cadastro.jpg'); }
-        .container { width: 100%; max-width: 480px; background: rgba(0, 0, 0, 0.94); padding: 30px; border-radius: 20px; border: 1px solid #444; box-sizing: border-box; margin: 20px 0; position: relative; }
-        
+        .container { width: 100%; max-width: 480px; background: rgba(0, 0, 0, 0.94); padding: 30px; border-radius: 20px; border: 1px solid #444; margin: 20px 0; }
         .titulo-amarelo { color: var(--destaque); text-align: center; text-transform: uppercase; font-weight: 900; font-size: 1.6rem; margin-bottom: 25px; }
         .grid-vagas { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; background: #1a1a1a; padding: 15px; border-radius: 12px; border: 1px solid #333; }
         .vaga-item { border-bottom: 1px solid #333; padding: 6px; font-size: 12px; display: flex; justify-content: space-between; }
-        .esgotado { color: var(--erro); font-weight: bold; text-transform: uppercase; }
-
-        .aviso-tamborim { background: rgba(255, 215, 0, 0.1); border: 1px solid var(--destaque); color: #fff; padding: 12px; border-radius: 8px; font-size: 11px; margin-bottom: 20px; text-align: center; }
-
+        .esgotado { color: var(--erro); font-weight: bold; }
         .campo { margin-bottom: 18px; display: flex; flex-direction: column; }
         label { font-size: 0.85rem; color: var(--cinza); margin-bottom: 6px; font-weight: 600; }
         input, select { padding: 14px; background: #000; border: 1px solid #444; color: #fff; border-radius: 10px; font-size: 1rem; }
-        
-        .btn-acao { width: 100%; padding: 20px; background: var(--branco); color: #000; border: none; font-weight: 900; border-radius: 10px; cursor: pointer; text-transform: uppercase; font-size: 1.1rem; }
+        .btn-acao { width: 100%; padding: 20px; background: var(--branco); color: #000; border: none; font-weight: 900; border-radius: 10px; cursor: pointer; text-transform: uppercase; }
         .btn-acao:disabled { background: #555; cursor: not-allowed; }
     </style>
 </head>
@@ -51,15 +39,14 @@
         <div class="container">
             <h2 class="titulo-amarelo">Inscrições Escolinha 2026</h2>
             <div id="vagas-container" class="grid-vagas"></div>
-            <div class="aviso-tamborim"><strong>AVISO:</strong> PARA TAMBORIM, É OBRIGATÓRIO TRAZER SEU PRÓPRIO INSTRUMENTO.</div>
 
             <form id="formMatricula">
                 <div class="campo"><label>Nome Completo *</label><input type="text" id="nome" required></div>
                 <div class="campo"><label>CPF *</label><input type="text" id="cpf" class="mask-cpf" placeholder="000.000.000-00" required></div>
                 <div class="campo"><label>Data de Nascimento *</label><input type="text" id="nasc" class="mask-data" placeholder="DD/MM/AAAA" onblur="validarIdade()" required></div>
                 
-                <div id="campos-responsavel" style="display:none; border-left: 4px solid var(--destaque); padding-left: 15px; background: #111; margin-bottom:15px; padding-bottom:10px;">
-                    <p style="font-size: 11px; color: var(--destaque);">DADOS DO RESPONSÁVEL</p>
+                <div id="campos-responsavel" style="display:none; border-left: 4px solid var(--destaque); padding-left: 15px; background: #111; margin-bottom:15px;">
+                    <p style="font-size: 11px; color: var(--destaque); padding-top:10px;">DADOS DO RESPONSÁVEL</p>
                     <div class="campo"><label>Nome do Responsável *</label><input type="text" id="nomeResp"></div>
                     <div class="campo"><label>Telefone do Responsável *</label><input type="text" id="telResp" class="mask-tel"></div>
                 </div>
@@ -74,7 +61,7 @@
 
                 <div class="campo"><label>WhatsApp *</label><input type="text" id="tel" class="mask-tel" required></div>
                 <div class="campo"><label>E-mail *</label><input type="email" id="email" required></div>
-                <div class="campo"><label>Rede Social (Instagram/Facebook)</label><input type="text" id="social"></div>
+                <div class="campo"><label>Rede Social</label><input type="text" id="social"></div>
                 <div class="campo"><label>Instrumento *</label><select id="instrumento" onchange="atualizarNiveis()" required></select></div>
                 <div class="campo"><label>Nível *</label><select id="nivel" required><option value="">Selecione o instrumento...</option></select></div>
 
@@ -93,23 +80,8 @@
     </div>
 
 <script>
-    const URL_API = "https://script.google.com/macros/s/AKfycbyIjva-F49DWXpJKvxt2hMVqCZEBKz34dD8DSVc2hedNsAW8Im15vdzWL0Sjjm3tjSv/exec"; 
+    const URL_API = "https://script.google.com/macros/s/AKfycbyIjva-F49DWXpJKvxt2hMVqCZEBKz34dD8DSVc2hedNsAW8Im15vdzWL0Sjjm3tjSv/exec"; // COLOQUE SUA URL DO SCRIPT PUBLICADO AQUI
     let idadeCalculada = null;
-
-    function validarCPF(cpf) {
-        cpf = cpf.replace(/[^\d]+/g, '');
-        if (cpf.length != 11 || /^(\d)\1{10}$/.test(cpf)) return false;
-        let add = 0;
-        for (let i = 0; i < 9; i++) add += parseInt(cpf.charAt(i)) * (10 - i);
-        let rev = 11 - (add % 11);
-        if (rev == 10 || rev == 11) rev = 0;
-        if (rev != parseInt(cpf.charAt(9))) return false;
-        add = 0;
-        for (let i = 0; i < 10; i++) add += parseInt(cpf.charAt(i)) * (11 - i);
-        rev = 11 - (add % 11);
-        if (rev == 10 || rev == 11) rev = 0;
-        return rev == parseInt(cpf.charAt(10));
-    }
 
     function abrirCadastro() {
         $(".tela").hide();
@@ -129,7 +101,7 @@
             });
             $("#vagas-container").html(html);
             atualizarInstrumentos();
-        } catch (e) { console.error(e); }
+        } catch (e) { console.error("Erro ao carregar vagas:", e); }
     }
 
     function validarIdade() {
@@ -140,20 +112,18 @@
         const hoje = new Date();
         let idade = hoje.getFullYear() - nasc.getFullYear();
         if (hoje < new Date(hoje.getFullYear(), nasc.getMonth(), nasc.getDate())) idade--;
+        idadeCalculada = idade;
 
         if (idade < 12) {
-            alert("As inscrições devem ser feitas para maiores de 12 anos.");
+            alert("Idade mínima: 12 anos.");
             $("#nasc").val("");
             $("#campos-responsavel").hide();
+        } else if (idade < 18) {
+            $("#campos-responsavel").show();
+            $("#nomeResp, #telResp").prop("required", true);
         } else {
-            idadeCalculada = idade;
-            if (idade < 18) {
-                $("#campos-responsavel").show();
-                $("#nomeResp, #telResp").prop("required", true);
-            } else {
-                $("#campos-responsavel").hide();
-                $("#nomeResp, #telResp").prop("required", false);
-            }
+            $("#campos-responsavel").hide();
+            $("#nomeResp, #telResp").prop("required", false);
         }
     }
 
@@ -172,15 +142,10 @@
     function atualizarNiveis() {
         const inst = $("#instrumento").val();
         let html = '<option value="">Selecione...</option>';
-        const padrao = ["Iniciante", "Intermediário"];
-        const aprimora = ["Curso de aprimoramento (para quem já toca)"];
-        
         if (["Surdo 1", "Surdo 2"].includes(inst)) {
-            aprimora.forEach(n => html += `<option value="${n}">${n}</option>`);
-        } else if (["Tamborim", "Cuica", "Timbal"].includes(inst)) {
-            [...padrao, ...aprimora].forEach(n => html += `<option value="${n}">${n}</option>`);
+            html += `<option value="Aprimoramento">Curso de aprimoramento</option>`;
         } else {
-            padrao.forEach(n => html += `<option value="${n}">${n}</option>`);
+            html += `<option value="Iniciante">Iniciante</option><option value="Intermediário">Intermediário</option>`;
         }
         $("#nivel").html(html);
     }
@@ -193,14 +158,12 @@
 
     $("#formMatricula").on("submit", async function(e) {
         e.preventDefault();
-        if(!validarCPF($("#cpf").val())) return alert("CPF Inválido!");
-
-        $("#btnReservar").prop("disabled", true).text("Verificando Vagas...");
+        $("#btnReservar").prop("disabled", true).text("Processando...");
 
         const dados = {
             nome: $("#nome").val(),
             cpf: $("#cpf").val(),
-            nasc: idadeCalculada,
+            nasc: $("#nasc").val(),
             sexo: $("#sexo").val(),
             tel: $("#tel").val(),
             email: $("#email").val(),
@@ -216,14 +179,9 @@
         try {
             const res = await fetch(URL_API, { method: "POST", body: JSON.stringify(dados) });
             const final = await res.json();
-            if (final.status === "sucesso") {
-                alert("Sua inscrição foi recebida com sucesso. A Diretoria da Ritimão irá validar suas informações e entrará em contato pelo Whatsapp e e-mail.");
-                window.location.reload();
-            } else {
-                alert(final.msg);
-                if(final.msg.includes("esgotadas")) window.location.reload();
-            }
-        } catch (e) { alert("Erro ao enviar."); }
+            alert(final.msg);
+            if (final.status === "sucesso") window.location.reload();
+        } catch (e) { alert("Erro na conexão."); }
         $("#btnReservar").prop("disabled", false).text("Reservar Vaga");
     });
 
