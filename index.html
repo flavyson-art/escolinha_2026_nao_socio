@@ -160,11 +160,28 @@
     function atualizarNiveis() {
         const inst = $("#instrumento").val();
         let html = '<option value="">Selecione...</option>';
-        if (["Surdo 1", "Surdo 2"].includes(inst)) {
-            html += `<option value="Aprimoramento">Curso de aprimoramento</option>`;
-        } else {
-            html += `<option value="Iniciante">Iniciante</option><option value="Intermediário">Intermediário</option>`;
+        
+        if (!inst) {
+            $("#nivel").html('<option value="">Selecione o instrumento...</option>');
+            return;
         }
+
+        // Regra para Surdos (Apenas Aprimoramento)
+        if (inst === "Surdo 1" || inst === "Surdo 2") {
+            html += `<option value="Aprimoramento">Curso de aprimoramento (para quem já toca)</option>`;
+        } 
+        // Regra para Tamborim, Cuíca e Timbal (Iniciante, Intermediário e Aprimoramento)
+        else if (inst === "Tamborim" || inst === "Cuica" || inst === "Timbal") {
+            html += `<option value="Iniciante">Iniciante</option>`;
+            html += `<option value="Intermediário">Intermediário</option>`;
+            html += `<option value="Aprimoramento">Curso de aprimoramento (para quem já toca)</option>`;
+        } 
+        // Regra para os demais: Chocalho, Xequerê, Repique, Caixa, Terceira (Apenas Iniciante e Intermediário)
+        else {
+            html += `<option value="Iniciante">Iniciante</option>`;
+            html += `<option value="Intermediário">Intermediário</option>`;
+        }
+
         $("#nivel").html(html);
     }
 
